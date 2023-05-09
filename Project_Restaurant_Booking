@@ -1,0 +1,35 @@
+package project_restaurant_booking;
+//first page to select user (customer or employee(reseption))
+
+import java.util.Scanner;
+
+public class Project_Restaurant_Booking {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+//       variable to storage to choose user 
+        int SelectUser;
+
+//       <<<<display like mune to select class to go and complete with it>>>> 
+        System.out.println("\t\t\t**Welocam to our restaurant**\n\n");
+        System.out.println("-If you are an Employee in the restaurant pleas enter (1).");
+        System.out.println("-If you are an Customer in the restaurant pleas enter (2).");
+        System.out.print("-Pleas Enter:");
+
+        SelectUser = input.nextInt();
+
+//      complete with other page to organization  
+        switch (SelectUser) {
+            case 1:
+                EmployeePage employee = new EmployeePage(0);
+                System.out.println("\t\t\tEnd System....we wish you great day");
+                break;
+            case 2:
+                CustomerPage Customer = new CustomerPage(0);
+                System.out.println("\t\t\tEnd System....we wish you great day");
+                break;
+        }
+
+    }
+
+}
