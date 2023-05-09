@@ -1,0 +1,134 @@
+
+package project_restaurant_booking;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+ 
+
+public class CustomerPage {
+
+    Scanner input = new Scanner(System.in);
+    
+//---------------------to storge the information booking in the array list---------------    
+    private ArrayList<String> Name_User = new ArrayList<>();
+    private ArrayList<Integer> ID_Booking = new ArrayList<>();
+    private ArrayList<String> Phone_User = new ArrayList<>();
+    private ArrayList<String> Time_Select = new ArrayList<>();
+    private ArrayList<Integer> Numder_Table = new ArrayList<>(5);
+
+//we define two constructors ,cause sime confusion when call this class    
+    public CustomerPage() {
+        StorgeInformation();
+    }
+
+    public CustomerPage(int i) {
+        StorgeInformation();
+        EnterID();
+    }
+//we use to storge all information in the array list 
+    private void StorgeInformation() {
+
+        Name_User.add("Mohammed");
+        ID_Booking.add(123456);
+        Phone_User.add("0553456789");
+        Time_Select.add("F-9:00PM");
+        Numder_Table.add(1);
+
+        Name_User.add("Ahamd");
+        ID_Booking.add(123457);
+        Phone_User.add("0550123456");
+        Time_Select.add("F-10:00PM");
+        Numder_Table.add(2);
+
+        Name_User.add("Omar");
+        ID_Booking.add(123458);
+        Phone_User.add("0551234567");
+        Time_Select.add("F-8:00PM");
+        Numder_Table.add(3);
+
+        Name_User.add("Naif");
+        ID_Booking.add(123459);
+        Phone_User.add("0501234567");
+        Time_Select.add("F-11:00PM");
+        Numder_Table.add(4);
+
+        Name_User.add("Mohammed");
+        ID_Booking.add(123450);
+        Phone_User.add("0550512345");
+        Time_Select.add("F-9:00PM");
+        Numder_Table.add(5);
+
+    }
+
+//enter ID booking thuough customer then send it Seerch
+    private void EnterID() {
+
+        int ID;
+        System.out.print("Pleas enter you number of booking: ");
+        ID = input.nextInt();
+        int sizeList = ID_Booking.size();
+        Seerch(ID, sizeList);
+
+    }
+
+//when received to check the ID  booking is exist or not   
+    private void Seerch(int SeerchID, int size) {
+        boolean flag = false;
+        for (int i = 0; i <= size; ++i) {
+            int id = ID_Booking.get(i);
+
+            if (SeerchID == id) {
+                BookingPage Booking = new BookingPage(SeerchID);
+                flag = true;
+                break;
+            }
+
+        }
+        if (flag == false) {
+
+            System.out.print("number of booking not fond pleas enter again!!!");
+            EnterID();
+        }
+    }
+
+    public void setName_User(ArrayList<String> Name_User) {
+        this.Name_User = Name_User;
+    }
+
+    public void setPhone_User(ArrayList<String> Phone_User) {
+        this.Phone_User = Phone_User;
+    }
+
+    public ArrayList<String> getName_User() {
+        return Name_User;
+    }
+
+    public ArrayList<String> getPhone_User() {
+        return Phone_User;
+    }
+
+    public void setTime_Select(ArrayList<String> Time_Select) {
+        this.Time_Select = Time_Select;
+    }
+
+    public ArrayList<String> getTime_Select() {
+        return Time_Select;
+    }
+
+    public void setNumder_Table(ArrayList<Integer> Numder_Table) {
+        this.Numder_Table = Numder_Table;
+    }
+
+    public ArrayList<Integer> getNumder_Table() {
+        return Numder_Table;
+    }
+
+    public void setID_Booking(ArrayList<Integer> ID_User) {
+        this.ID_Booking = ID_User;
+    }
+
+    public ArrayList<Integer> getID_Booking() {
+        return ID_Booking;
+    }
+
+}
