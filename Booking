@@ -1,0 +1,141 @@
+
+package project_restaurant_booking;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/*
+ *
+ * To display bookin customer in restaurant 
+ * To remove booking when need customer to cancellation of booking
+ * 
+ */
+public class BookingPage {
+
+    Scanner input = new Scanner(System.in);
+//----------------------create object both of classes employee and customer--------------
+    EmployeePage employee = new EmployeePage();
+    CustomerPage customerIformation = new CustomerPage();
+    CustomerPage customerIformation2 = new CustomerPage();
+    
+//using object of class ,we took the size from it 
+    int sizeUser = customerIformation.getID_Booking().size();
+    int sizeEmployee = employee.getID_Employee().size();
+
+//whan send the ID , but we don't know who if it's customer or Employee
+    private final int Employee_or_customer;
+//when we send the id copy it in temporary  
+    private ArrayList<Integer> Temp;
+    private ArrayList<Integer> Temp2;
+
+//constructor of class booking
+//we are working if the send is employee if not ,sure the send customer
+    public BookingPage(int sendID) {
+       
+        Employee_or_customer = sendID;
+        PrintMenue();
+    }
+
+    private void PrintMenue() {
+
+        int SelectMenue;
+
+//display like mune to select class to go and complete with it
+        System.out.println("Pleas Choose of Menue.....");
+        System.out.println("1- Add Booking..");
+        System.out.println("2- Cancel Booking..");
+        System.out.println("3- Print in Formation of Booking (customer)..");
+        System.out.println("4- Print All Booking..");
+        System.out.print("-Pleas Enter :");
+
+        SelectMenue = input.nextInt();
+
+//complete with other page to organization  
+        switch (SelectMenue) {
+            case 1:
+                System.out.print("-not yet of new booking");
+
+                break;
+            case 2:
+                CancelOFTabl3();
+                System.out.print("-Deleted successfully.....");
+                break;
+            case 3:
+                BookingREUser();
+                break;
+            case 4:
+                boolean IFT = DetermentID();
+                if (IFT) {
+                    AllBooking();
+                    break;
+                } else {
+                    System.out.print("-Error entering ID or ID not exist \n \t \t Must be ID of employee to access this part...");
+                }
+
+        }
+
+    }
+
+//when customer is select delete booking, use this method to deleted    
+    private void CancelOFTabl3() {
+        Temp2 = customerIformation2.getID_Booking();
+        for (int i = 0; i < sizeUser; ++i) {
+            int id = Temp2.get(i);
+
+            if (Employee_or_customer == id) {
+                customerIformation.getID_Booking().remove(i);
+            }
+        }
+    }
+//when customer is select display booking, all information related to this IDbooking is printed
+    private void BookingREUser() {
+
+        for (int i = 0; i < sizeUser; ++i) {
+            int id = customerIformation.getID_Booking().get(i);
+
+            if (Employee_or_customer == id) {
+                System.out.print("\t\t\t" + "all information of this booking " + "\t\n");
+
+                System.out.print("\t\t\t" + customerIformation.getID_Booking().get(i) + "\t\n");
+                System.out.print("\t\t\t" + customerIformation.getName_User().get(i) + "\t\n");
+                System.out.print("\t\t\t" + customerIformation.getNumder_Table().get(i) + "\t\n");
+                System.out.print("\t\t\t" + customerIformation.getTime_Select().get(i) + "\t\n");
+                System.out.print("\t\t\t" + customerIformation.getPhone_User().get(i) + "\t\n");
+                break;
+            }
+
+        }
+
+    }
+//when Employee is select display all booking for printed . befor this method check if the ID is Employee 
+    private void AllBooking() {
+
+        System.out.print("\t\t\t" + customerIformation.getID_Booking() + "\t\n");
+        System.out.print("\t\t\t" + customerIformation.getName_User() + "\t\n");
+        System.out.print("\t\t\t" + customerIformation.getNumder_Table() + "\t\n");
+        System.out.print("\t\t\t" + customerIformation.getTime_Select() + "\t\n");
+        System.out.print("\t\t\t" + customerIformation.getPhone_User() + "\t\n");
+
+    }
+//is here check if the ID is employee or not 
+    private boolean DetermentID() {
+
+        Temp = employee.getID_Employee();
+        
+        boolean findEmployee = false;
+        for (int i = 0; i < sizeEmployee; ++i) {
+
+            int idCheck = Temp.get(i);
+
+            if (Employee_or_customer == idCheck) {
+                findEmployee = true;
+
+            }
+
+        }
+
+        return findEmployee;
+
+    }
+
+}
