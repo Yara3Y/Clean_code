@@ -1,0 +1,79 @@
+
+package project_restaurant_booking;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+public class EmployeePage {
+
+    Scanner input = new Scanner(System.in);
+
+//---------------------to storge the ID employee in the array list---------------      
+    private ArrayList<Integer> ID_Employee = new ArrayList<>();
+
+//we difine two constructors ,cause sime confusion when call this class  
+    public EmployeePage(int i) {
+
+        StorgeInformationEmplyee();
+        EnterID_Employee();
+    }
+
+    public EmployeePage() {
+        StorgeInformationEmplyee();
+    }
+//we use to storge ID iEmployee in the array list 
+
+    private void StorgeInformationEmplyee() {
+
+        ID_Employee.add(223456);
+        ID_Employee.add(227890);
+        ID_Employee.add(223754);
+
+    }
+//enter ID  through employee
+
+    private void EnterID_Employee() {
+
+        int ID;
+        System.out.print("Pleas enter you ID: ");
+        ID = input.nextInt();
+        int sizeList = ID_Employee.size();
+        SeerchEmployee(ID, sizeList);
+
+    }
+
+//when received to check the ID  employee is exist or not   
+    private void SeerchEmployee(int SeerchID, int size) {
+        boolean flag = false;
+        for (int i = 0; i <= size; ++i) {
+
+            int id = ID_Employee.get(i);
+
+            if (SeerchID == id) {
+                System.out.println("welocam in section Employee");
+                BookingPage Booking = new BookingPage(SeerchID);
+                flag = true;
+
+                break;
+            }
+
+        }
+
+        if (flag == false) {
+
+            System.out.println("you ID not fond pleas enter again!!!");
+            EnterID_Employee();
+        }
+    }
+
+    public void setID_Employee(ArrayList<Integer> ID_Employee) {
+        this.ID_Employee = ID_Employee;
+    }
+
+    public ArrayList<Integer> getID_Employee() {
+
+        return ID_Employee;
+    }
+
+}
